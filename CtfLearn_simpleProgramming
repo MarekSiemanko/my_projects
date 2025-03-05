@@ -1,0 +1,29 @@
+(Every tasks in CTF im doing on my virtual lab in kali Linux.) (Python coding in VSC)
+
+Simple Programming 30 points Easy
+
+Task description: "Can you help me? I need to know how many lines there are where the number of 0's is a multiple of 3 or the numbers of 1s is a multiple of 2. Please! Here is the file: https://mega.nz/#!7aoVEKhK!BAohJ0tfnP7bISIkbADK3qe1yNEkzjHXLKoJoKmqLys "
+
+1. First of all: code writing 
+def count_valid_rows_from_file(filename):
+    count = 0
+
+    with open(filename, 'r') as file:
+        for line in file: 
+            line = line.strip()  # Usuwamy białe znaki (np. \n)
+            zeros = line.count('0')
+            ones = line.count('1')
+
+            if zeros % 3 == 0 or ones % 2 == 0:
+                count += 1
+
+    return count
+
+filename = "data.dat"  # nazwa pliku podanego w zadaniu
+result = count_valid_rows_from_file(filename)
+print(f"Liczba pasujących wierszy: {result}")
+
+2. File contains a sequence of different numbers.
+3. After use code the flag show is: "CTFlearn{6662}"
+
+In this CTF author ask u to count his sequence of numbers with simple coding in python. 

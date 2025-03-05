@@ -1,0 +1,43 @@
+
+
+Task description: You'll need Brute Force to solve this. Knowing Python should help too. Oh! And Base64 encryption of course! Find the flag!
+https://mega.nz/#!vf43RCyC!NNpuYjB3d-gevhsHXefwAAAmzk4tJHxUZr0GnrSDI_c Hash: e82a4b4a0386d5232d52337f36d2ab73
+
+1. From creator of this CTF we got normal image(jpeg) 
+2. I used command binwalk to see what is inside after i saw there is many folders and zip.
+3. So i use command binwalk -e (extract) to get a extracted hidden in image files.
+4. At all we found in folders hint in that form ("Hmmm... almost!
+The password is: "ctflag*****" where * is a number.
+Encrypt the password using MD5 and compare it to the given hash!
+As I said, you're gonna have to brute force the password!
+Good luck! :)")
+5. So i need to write a python code using methot brute force
+6. First part of code: 
+def Brute():
+    for i in range(0, 100000):
+      print(f'ctflag{i}')
+
+Brute()
+  (generate from 00000 to 99999 every options)
+https://docs.python.org/3/library/itertools.html
+7. After all my try code by myself and help with AI im fail  after all i found ready script in internet: https://stackoverflow.com/questions/69763941/how-do-i-brute-force-a-password-protected-zip-file-with-a-three-digit-password
+I need change some detail to figure out what i need from task code:
+import zipfile
+import itertools
+
+digits = '0123456789'
+
+for c in itertools.product(digits, repeat=5):
+  password = 'ctflag'+ ''.join(c)
+  try:
+    with zipfile.ZipFile('1926.zip', 'r') as zip_ref:
+      zip_ref.extractall(path='/tmp', pwd = bytes(password, 'utf-8'))
+      print(f"Found correct password {password}")
+      break
+  except:
+    print('Password ' + password + ' failed')
+It can be optimalize but was too hard for me.
+after long brute force i found a flag which was "ctflag
+next step is encrypt next zip with hashes which we got in task:
+
+https://docs.python.org/3/library/hashlib.html

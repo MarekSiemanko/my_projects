@@ -36,7 +36,7 @@ for c in itertools.product(digits, repeat=5):
       break
   except:
     print('Password ' + password + ' failed')
-It can be optimalize but was too hard for me.
+It can be optimalize but was too hard for me at this time i should something to make process faster.
 after long brute force i found a flag which was "ctflag
 next step is encrypt next zip with hashes which we got in task:
 
